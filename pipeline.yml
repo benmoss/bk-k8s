@@ -1,0 +1,13 @@
+steps:
+- name: build image
+  agents:
+    queue: kubernetes
+  plugins:
+  - kubernetes:
+      containers:
+      - image: gcr.io/kaniko-project/executor:latest
+        command: [executor]
+        args:
+        - --dockerfile=Dockerfile
+        - --context=.
+        - --destination=ttl.sh/demo:10m
